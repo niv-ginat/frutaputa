@@ -5,13 +5,13 @@
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1380px;
+    max-width: 1480px;
   }
 }
 
 body {
   font-family: Helvetica, sans-serif;
-  background-color: #000000;
+  background-color: #FF674F;
   color: white;
 }
 
