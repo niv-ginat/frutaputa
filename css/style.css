@@ -5,23 +5,42 @@
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1480px;
+    max-width: 1380px;
   }
 }
 
 body {
   font-family: Helvetica, sans-serif;
-  background-color: #FF674F;
-  color: white;
+  background-color: #F5F5F2;
+  color: #221F1F;
 }
 
 /* TYPOGRAPHY */
 
-h1 {
-  font-size: 100px;
-  line-height: 90%;
-  font-weight: 100;
+a {color:#FF674F !important;}
 
+h1 {
+  font-size: 72px;
+  line-height: 120%;
+  font-family: "new-spirit", serif;
+  font-weight: 400;
+  font-style: normal;
+
+}
+
+h1 span a {
+  color:#f69494;
+  font-weight:700;
+}
+
+h1 span a:hover {
+  color:#f69494
+}
+
+h3 {
+  font-size: 24px;
+  font-family: "new-spirit", serif;
+font-weight: 700;
 }
 
 .text-highlight {
@@ -33,7 +52,7 @@ h1 {
 #navigation {
   padding-top: 30px;
   padding-bottom: 30px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 #navigation .collapse {
@@ -55,6 +74,10 @@ h1 {
   line-height: 1;
 }
 
+#navigation .logo img {
+  width:200px
+}
+
 #navigation ul {
   display: block;
   line-height: 0.4;
@@ -70,8 +93,15 @@ h1 {
   width: 140px;
 }
 
+#intro-video {
+  height:600px;
+  overflow: hidden;
+
+}
+
 .introduction-text {
   padding-bottom: 80px;
+  padding-top:80px
 }
 
 .introduction-text span img {
@@ -115,15 +145,12 @@ h1 {
 
 #work img {
   width: 100%;
-  height:500px;
+  aspect-ratio: 1 / 1;
   margin-bottom: 15px;
   object-fit: cover;
 }
 
-#work h3 {
-  font-size: 14px;
-  font-weight:500;
-}
+
 #work h4 {
   font-weight: 100;
   font-size: 14px;
@@ -134,7 +161,7 @@ h1 {
 
 #work video {
   width: 100%; /* Adjust the width as needed */
-  height: 500px; /* Maintain the aspect ratio */
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   overflow: hidden;
   margin-bottom: 8px;
@@ -178,7 +205,6 @@ h1 {
 }
 
 .more-work-item h3 {
-  font-size: 16px;
   padding-bottom: 20px;
   margin-bottom: 30px;
   border-bottom: 1px solid white !important;
@@ -219,11 +245,7 @@ h1 {
   padding: 40px 0px;
 }
 
-#project-description h3 {
-  font-style: italic;
-  font-weight: 300;
-  font-size: 24px;
-}
+
 #project-description p {
   font-size: 24px;
 }
