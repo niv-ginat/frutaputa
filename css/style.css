@@ -63,17 +63,6 @@ font-weight: 700;
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
-#navigation .logo .text-highlight {
-  margin-left: -2px;
-}
-
-#navigation .logo a {
-  color: inherit;
-  font-size: 36px;
-  text-decoration: none;
-  line-height: 1;
-}
-
 #navigation .logo img {
   width:200px
 }
@@ -87,6 +76,7 @@ font-weight: 700;
   font-size: 13px;
   color: inherit;
   padding-left: 0px;
+  text-align:right
 }
 
 #navigation img {
@@ -94,9 +84,8 @@ font-weight: 700;
 }
 
 #intro-video {
-  height:600px;
+  aspect-ratio: 1:1;
   overflow: hidden;
-
 }
 
 .introduction-text {
@@ -262,9 +251,9 @@ font-weight: 700;
     margin-bottom: 0px;
   }
 
-  #navigation .logo a {
+  #navigation .logo img {
     color: inherit;
-    font-size: 32px;
+    width:120px;
     text-decoration: none;
   }
 
