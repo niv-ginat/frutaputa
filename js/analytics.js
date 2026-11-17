@@ -50,6 +50,7 @@
     const href = a.getAttribute("href") || "";
     if (href.startsWith("mailto:")) fpTrack("click_email", { link_url: href });
     else if (href.includes("instagram.com")) fpTrack("click_instagram", { link_url: href });
+    else if (/youtube\.com|reddit\.com|tiktok\.com|pinterest\./.test(href)) fpTrack("click_social", { link_url: href, network: (href.match(/(youtube|reddit|tiktok|pinterest)/) || [])[1] });
     else if (href.includes("work-together")) fpTrack("click_work_together");
   });
 })();

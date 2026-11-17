@@ -5,9 +5,9 @@
   const root = document.documentElement;
   const isVideo = (src) => /\.(mp4|webm|mov)$/i.test(src);
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  const media = (src, alt, cls) =>
+  const media = (src, alt, cls, poster) =>
     isVideo(src)
-      ? `<video src="${esc(src)}" autoplay muted loop playsinline ${cls ? `class="${cls}"` : ""}></video>`
+      ? `<video src="${esc(src)}" autoplay muted loop playsinline preload="metadata" ${poster ? `poster="${esc(poster)}"` : ""} ${cls ? `class="${cls}"` : ""}></video>`
       : `<img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" ${cls ? `class="${cls}"` : ""}/>`;
   const byDateDesc = (a, b) => b.year - a.year || (b.month || 0) - (a.month || 0);
   P.sort(byDateDesc);
@@ -28,6 +28,11 @@
   document.querySelectorAll("[data-email]").forEach((el) => {
     el.href = "mailto:" + C.email;
     if (!el.textContent.trim()) el.textContent = C.email;
+  });
+
+  // footer socials come from FP_CONTACT.socials in projects.js
+  if (C.socials) document.querySelectorAll("[data-socials]").forEach((el) => {
+    el.innerHTML = C.socials.map(([name, url]) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(name)}</a>`).join(" &nbsp;·&nbsp; ");
   });
 
   const splashWrap = document.querySelector(".splash-wrap");
@@ -84,7 +89,7 @@
         .join("");
       list.querySelectorAll("a").forEach((a) => {
         const p = P[+a.dataset.i];
-        a.addEventListener("mouseenter", () => { hover.innerHTML = media(p.cover, p.title); hover.classList.add("on"); });
+        a.addEventListener("mouseenter", () => { hover.innerHTML = media(p.loop || p.cover, p.title, "", p.cover); hover.classList.add("on"); });
         a.addEventListener("mouseleave", () => hover.classList.remove("on"));
       });
     };
@@ -120,7 +125,12 @@
         .filter((m) => m[1])
         .map((m) => `<div class="micro">${m[0]}<div class="v">${esc(m[1])}</div></div>`)
         .join("");
-      const n = (p.media || [p.cover]).length;
+      // the short loop leads the gallery; the full film (YouTube) sits under the text
+      const items = [...(p.loop ? [p.loop] : []), ...(p.media || [p.cover])].filter((m, k, a) => a.indexOf(m) === k);
+      const n = items.length;
+      const yt = p.youtube
+        ? `<div class="film"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(p.youtube)}?rel=0" title="${esc(p.title)} — film" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe><p class="micro">( Full film )</p></div>`
+        : "";
       proj.innerHTML = `
         <div class="p-head">
           <p class="micro"><a href="index.html#work">( All work )</a> &nbsp; ${String(P.length - i).padStart(2, "0")} / ${String(P.length).padStart(2, "0")}</p>
@@ -128,8 +138,9 @@
           <div class="p-meta">${meta}</div>
         </div>
         ${(p.description || []).length ? `<div class="p-desc just">${p.description.map((d) => `<p>${esc(d)}</p>`).join("")}</div>` : ""}
-        <div class="gallery">${(p.media || [p.cover])
-          .map((m, k) => `<figure>${media(m, p.title)}<figcaption class="micro"><span>${esc(p.title)}</span><span>${k + 1} / ${n}</span></figcaption></figure>`)
+        ${yt}
+        <div class="gallery">${items
+          .map((m, k) => `<figure>${media(m, p.title, "", m === p.loop ? p.cover : "")}<figcaption class="micro"><span>${esc(p.title)}</span><span>${k + 1} / ${n}</span></figcaption></figure>`)
           .join("")}</div>
         <nav class="pager micro">
           ${older ? `<a href="project.html#${older.slug}">Earlier · ${older.year}<span class="t">${esc(older.title)}</span></a>` : ""}
