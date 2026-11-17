@@ -45,6 +45,17 @@ window.PROJECTS = [
     ],
   },
   {
+    slug: "the-dollies",
+    title: "The Dollies",
+    year: 2025,
+    place: "", // TODO: city
+    type: "Mural",
+    cover: "images/projects/the-dollies/poster.jpg",
+    loop: "video/loops/the-dollies.mp4",
+    description: [], // TODO
+    media: [],
+  },
+  {
     slug: "belen-lopez-mural",
     title: "Belén López Mural",
     year: 2024,
