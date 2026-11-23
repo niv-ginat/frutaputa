@@ -36,6 +36,11 @@ window.PROJECTS = [
     // stills pulled from Social Media/Video/Final Video.mp4 (FP_Gallery_Video.mp4 is a broken export)
     media: [
       "images/projects/gallery-event/cover.jpg",
+      "images/projects/gallery-event/virgens.jpg",
+      "images/projects/gallery-event/virgen-yellow.jpg",
+      "images/projects/gallery-event/virgen-gold.jpg",
+      "images/projects/gallery-event/virgen-blue.jpg",
+      "images/projects/gallery-event/virgen-pink.jpg",
       "images/projects/gallery-event/still-3.jpg",
       "images/projects/gallery-event/still-5.jpg",
       "images/projects/gallery-event/still-9.jpg",
@@ -86,6 +91,7 @@ window.PROJECTS = [
       "images/projects/stickers/cans.jpg",
       "images/projects/stickers/torn-1.jpg",
       "images/projects/stickers/torn-2.jpg",
+      "images/projects/stickers/story.jpg",
     ],
   },
   {
@@ -125,6 +131,7 @@ window.PROJECTS = [
     type: "Mural",
     client: "Pinta Malasaña festival",
     cover: "images/projects/pinta-malasana/cover.jpg",
+    loop: "video/loops/pinta-malasana.mp4",
     description: [], // TODO
     media: [
       "images/projects/pinta-malasana/cover.jpg",
@@ -136,6 +143,7 @@ window.PROJECTS = [
       "images/projects/pinta-malasana/process-5.jpg",
       "images/projects/pinta-malasana/door-1.jpg",
       "images/projects/pinta-malasana/door-2.jpg",
+      "images/projects/pinta-malasana/door-3.jpg",
       "images/projects/pinta-malasana/detail.jpg",
     ],
   },
@@ -364,7 +372,10 @@ window.PROJECTS = [
     cover: "images/projects/rotating-vase/cover.jpg",
     loop: "video/loops/rotating-vase.mp4",
     description: [], // TODO
-    media: ["images/projects/rotating-vase/cover.jpg"],
+    media: [
+      "images/projects/rotating-vase/cover.jpg",
+      "images/projects/rotating-vase/vase.jpg",
+    ],
   },
   {
     slug: "funfun-mural",
