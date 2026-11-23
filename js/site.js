@@ -82,7 +82,7 @@
           (p, i) => `<li><a href="project.html#${encodeURIComponent(p.slug)}" data-i="${P.indexOf(p)}">
             ${!p.cover || isVideo(p.cover) ? "" : `<img class="mobile-thumb" src="${esc(p.cover)}" alt="" loading="lazy"/>`}
             <span class="yr">${p.year}</span>
-            <span class="t">${esc(p.title)}${p.soon ? ` <span class="micro soon-tag">( Soon )</span>` : ""}</span>
+            ${(s => `<span class="t"><span class="t-up">${esc(p.title)}${s}</span><span class="t-it" aria-hidden="true">${esc(p.title)}${s}</span></span>`)(p.soon ? ` <span class="micro soon-tag">( Soon )</span>` : "")}
             <span class="micro place">${esc(p.place || "")}</span>
             <span class="micro type">${esc(p.type || "")}</span></a></li>`
         )
