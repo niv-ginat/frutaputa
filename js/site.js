@@ -80,16 +80,19 @@
       list.innerHTML = items
         .map(
           (p, i) => `<li><a href="project.html#${encodeURIComponent(p.slug)}" data-i="${P.indexOf(p)}">
-            ${isVideo(p.cover) ? "" : `<img class="mobile-thumb" src="${esc(p.cover)}" alt="" loading="lazy"/>`}
+            ${!p.cover || isVideo(p.cover) ? "" : `<img class="mobile-thumb" src="${esc(p.cover)}" alt="" loading="lazy"/>`}
             <span class="yr">${p.year}</span>
-            <span class="t">${esc(p.title)}</span>
+            <span class="t">${esc(p.title)}${p.soon ? ` <span class="micro soon-tag">( Soon )</span>` : ""}</span>
             <span class="micro place">${esc(p.place || "")}</span>
             <span class="micro type">${esc(p.type || "")}</span></a></li>`
         )
         .join("");
       list.querySelectorAll("a").forEach((a) => {
         const p = P[+a.dataset.i];
-        a.addEventListener("mouseenter", () => { hover.innerHTML = media(p.loop || p.cover, p.title, "", p.cover); hover.classList.add("on"); });
+        a.addEventListener("mouseenter", () => {
+          hover.innerHTML = p.loop || p.cover ? media(p.loop || p.cover, p.title, "", p.cover) : `<div class="soon-card"><span class="paren">Coming soon</span></div>`;
+          hover.classList.add("on");
+        });
         a.addEventListener("mouseleave", () => hover.classList.remove("on"));
       });
     };
@@ -125,11 +128,14 @@
         .filter((m) => m[1])
         .map((m) => `<div class="micro">${m[0]}<div class="v">${esc(m[1])}</div></div>`)
         .join("");
-      // the short loop leads the gallery; the full film (YouTube) sits under the text
-      const items = [...(p.loop ? [p.loop] : []), ...(p.media || [p.cover])].filter((m, k, a) => a.indexOf(m) === k);
+      // order on every project page: video first (the full film if it's on YouTube, else the loop), then the image gallery.
+      // the gallery mirrors the static Instagram posts (and feeds Pinterest), so it holds images only.
+      const items = (p.media || [p.cover]).filter((m, k, a) => m && !/\.mp4$/i.test(m) && a.indexOf(m) === k);
       const n = items.length;
       const yt = p.youtube
         ? `<div class="film"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(p.youtube)}?rel=0" title="${esc(p.title)} — film" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe><p class="micro">( Full film )</p></div>`
+        : p.loop
+        ? `<div class="film">${media(p.loop, p.title, "", p.cover)}</div>`
         : "";
       proj.innerHTML = `
         <div class="p-head">
@@ -139,6 +145,7 @@
         </div>
         ${(p.description || []).length ? `<div class="p-desc just">${p.description.map((d) => `<p>${esc(d)}</p>`).join("")}</div>` : ""}
         ${yt}
+        ${!items.length && !yt ? `<div class="soon-block"><p class="giant">Coming<br />soon</p><p class="micro">Photos and film from this project are on their way.</p></div>` : ""}
         <div class="gallery">${items
           .map((m, k) => `<figure>${media(m, p.title, "", m === p.loop ? p.cover : "")}<figcaption class="micro"><span>${esc(p.title)}</span><span>${k + 1} / ${n}</span></figcaption></figure>`)
           .join("")}</div>
