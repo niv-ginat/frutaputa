@@ -447,7 +447,7 @@ window.PROJECTS = [
   },
   {
     slug: "gift-for-mitch-and-sara",
-    title: "Beloved",
+    title: "My Beloved",
     year: 2022,
     place: "Nashville",
     type: "Commission",
