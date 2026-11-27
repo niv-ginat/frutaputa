@@ -480,6 +480,7 @@ window.PROJECTS = [
     type: "Furniture",
     cover: "images/projects/fruta-puta-nightstand/table.jpg",
     loop: "video/loops/fruta-puta-nightstand.mp4",
+    youtube: "Uu_fdgRtiHU",
     description: [], // TODO
     media: [
       "images/projects/fruta-puta-nightstand/table.jpg",
@@ -492,12 +493,12 @@ window.PROJECTS = [
 window.FP_CONTACT = {
   email: "niv.ginat@gmail.com",
   instagram: "https://www.instagram.com/vivafrutaputa/",
-  // footer socials, in this order. Add TikTok / Pinterest here once the accounts exist.
+  // footer socials, in this order (plain-text links)
   socials: [
     ["Instagram", "https://www.instagram.com/vivafrutaputa/"],
     ["YouTube", "https://www.youtube.com/@frutaputa"],
+    ["TikTok", "https://www.tiktok.com/@vivafrutaputa"],
+    ["Pinterest", "https://www.pinterest.com/vivafrutaputa/"],
     ["Reddit", "https://www.reddit.com/user/vivafrutaputa/"],
-    // ["TikTok", "https://www.tiktok.com/@..."],
-    // ["Pinterest", "https://www.pinterest.com/..."],
   ],
 };
